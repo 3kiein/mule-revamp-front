@@ -1,50 +1,45 @@
-import { styled } from "styled-components"
-import { MainPage } from "./Home"
-import { useState } from "react";
+import { styled } from "styled-components";
+import { MainPage } from "./Home";
+import { useState, useEffect } from "react";
+import { Announcement, HotDiv, MainNotice } from "./Notice";
+import MarketItem from "../components/MarketItem";
+import Modal from "../components/NewsSearchModal";
 
-const MarketPage = styled(MainPage)``
+const MarketPage = styled(MainPage)``;
+
+const GridSection = styled.section`
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+	gap: 40px;
+`;
 
 const Market = () => {
-    const [minPrice, setMinPrice] = useState(0);
-    const [maxPrice, setMaxPrice] = useState(100);
+	const [marketItems, setMareketItems] = useState([]);
+	const [filteredMarketItems, setFilteredMarketItems] = useState([]);
 
-    const handleMinPriceChange = (event) => {
-        setMinPrice(parseInt(event.target.value));
-    };
+	useEffect(() => {
+		fetch("http://localhost:3001/market")
+			.then((res) => res.json())
+			.then((data) => {
+				setMareketItems(data.marketItems);
+				setFilteredMarketItems(data.marketItems);
+			});
+	}, []);
 
-    const handleMaxPriceChange = (event) => {
-        setMaxPrice(parseInt(event.target.value));
-    };
-
-  
-    return (
-        <MarketPage>
-            <div>
-                <label htmlFor="min-price">최소 가격:</label>
-                <input
-                    type="range"
-                    id="min-price"
-                    min={0}
-                    max={1000}
-                    value={minPrice}
-                    onChange={handleMinPriceChange}
-                />
-                <span>{minPrice}</span>
-                <br />
-
-                <label htmlFor="max-price">최대 가격:</label>
-                <input
-                    type="range"
-                    id="max-price"
-                    min={0}
-                    max={1000}
-                    value={maxPrice}
-                    onChange={handleMaxPriceChange}
-                />
-                <span>{maxPrice}</span>
-             </div>
-        </MarketPage>
-    )
-}
+	return (
+		<MarketPage>
+			<MainNotice>
+				<HotDiv>HOT</HotDiv>
+				<Announcement>[필독] 뮬 장터규정 업데이트 안내</Announcement>
+				<Modal />
+			</MainNotice>
+			<GridSection>
+				{filteredMarketItems.map((item) => {
+					return <MarketItem key={item.id} item={item} />;
+				})}
+			</GridSection>
+		</MarketPage>
+	);
+};
 
 export default Market;
