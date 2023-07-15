@@ -4,3 +4,10 @@
 
 ## SEB FE 45기 스터디 : 참숯가마 1팀
 ### 23.06.23 - 23.07.15
+
+
+
+
+## Stack
+
+<img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=react&logoColor=white">
