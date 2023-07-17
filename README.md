@@ -13,7 +13,7 @@
 | 송지훈 | 김세민 |
 | --- | --- |
 | http://github.com/tedhun21 | http://github.com/3kiein |
-+ 회고 블로그 주소 추가 예정입니다. 
+| [회고 블로그 주소](https://velog.io/@tedhun21/%EC%8A%A4%ED%84%B0%EB%94%94-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8) |  |
 
 ## About Project
 
